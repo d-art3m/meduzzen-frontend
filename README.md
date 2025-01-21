@@ -26,6 +26,14 @@ git clone https://github.com/d-art3m/meduzzen-frontend
 npm install
 ```
 
+3. Copy the `.env.sample` file to create your `.env` file
+
+4. Open the `.env` file and configure the following environment variables:
+```bash
+# The port on which the app will run (default: 4200)
+PORT = *
+```
+
 ## Development server
 
 To start a local development server, run:
@@ -50,4 +58,37 @@ To execute unit tests with the [Karma](https://karma-runner.github.io) test runn
 
 ```bash
 ng test
+```
+
+## Running the Application with Docker
+
+### 1. Production Mode
+To run the application in production mode
+
+Build the Docker image:
+```bash
+docker build -t meduzzen-frontend .
+```
+
+Run the container:
+```bash
+docker run -p 4200:80 meduzzen-frontend
+```
+
+### 2. Development Mode
+
+To start the application in development mode with Docker Compose
+
+Use the provided `docker-compose.yml` file.
+
+Start the services:
+
+```bash
+docker-compose up --build
+```
+
+To stop the application:
+
+```bash
+docker-compose down
 ```
