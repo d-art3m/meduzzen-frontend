@@ -1,0 +1,32 @@
+@use 'btn.styles';
+
+.container {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    min-width: 75%;
+    gap: 1rem;
+
+    input {
+      padding: 0.75rem;
+      border: 2px solid var(--primary-color);
+      border-radius: 0.5rem;
+      font-size: var(--fs-md);
+    }
+  }
+
+  p {
+    margin-top: 1rem;
+    font-size: var(--fs-md);
+
+    a {
+      color: var(--accent-color);
+    }
+  }
+}
