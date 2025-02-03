@@ -1,0 +1,27 @@
+nav {
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+
+    li {
+      a {
+        text-decoration: none;
+        color: var(--text-color);
+
+        font-size: var(--fs-md);
+        font-weight: var(--fw-medium);
+
+        @media (max-width: 768px) {
+          font-size: var(--fs-sm);
+        }
+
+        &:hover {
+          color: var(--accent-color);
+        }
+      }
+    }
+  }
+}
