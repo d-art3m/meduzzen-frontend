@@ -1,0 +1,17 @@
+<div class="container">
+  <ng-container *ngIf="error; else content">
+    <div>Error: {{ error }}</div>
+  </ng-container>
+
+  <ng-template #content>
+    <ng-container *ngIf="healthCheck; else loading">
+      <div>Status Code: {{ healthCheck.status_code }}</div>
+      <div>Detail: {{ healthCheck.detail }}</div>
+      <div>Result: {{ healthCheck.result }}</div>
+    </ng-container>
+  </ng-template>
+
+  <ng-template #loading>
+    <div>Loading...</div>
+  </ng-template>
+</div>

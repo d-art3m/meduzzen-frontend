@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { StateService } from '../../services/state.service';
+import { HealthCheckComponent } from '../health-check/health-check.component';
 
 @Component({
   selector: 'app-main',
-  imports: [],
+  imports: [HealthCheckComponent],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
 })
