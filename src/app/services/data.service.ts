@@ -6,12 +6,12 @@ import { Injectable } from '@angular/core';
 
 export class DataService {
   users = [
-    { id: 1, name: 'Alice Johnson' },
-    { id: 2, name: 'Bob Smith' },
-    { id: 3, name: 'Charlie Brown' },
-    { id: 4, name: 'Diana Prince' },
-    { id: 5, name: 'Ethan Hunt' },
-    { id: 6, name: 'Fiona Gallagher' },
+    { id: '1', name: 'Alice Johnson', email: '' },
+    { id: '2', name: 'Bob Smith', email: '' },
+    { id: '3', name: 'Charlie Brown', email: '' },
+    { id: '4', name: 'Diana Prince', email: '' },
+    { id: '5', name: 'Ethan Hunt', email: '' },
+    { id: '6', name: 'Fiona Gallagher', email: '' },
   ];
 
   companies = [
@@ -45,7 +45,7 @@ export class DataService {
     return this.companies;
   }
 
-  getUserById(id: number) {
+  getUserById(id: string) {
     return this.users.find(user => user.id === id);
   }
 

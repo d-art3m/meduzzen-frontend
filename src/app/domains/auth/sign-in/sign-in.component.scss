@@ -19,6 +19,15 @@
       border-radius: 0.5rem;
       font-size: var(--fs-md);
     }
+
+    .error {
+      color: var(--accent-color);
+    }
+  }
+  
+  .btn {
+    margin-top: 0.5rem;
+    min-width: 75%;
   }
 
   p {

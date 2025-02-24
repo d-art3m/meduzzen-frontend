@@ -1,14 +1,43 @@
 <div class="container">
   <h1>Sign Up</h1>
-  
-  <form>
-    <input type="text" id="name" placeholder="Name" required />
-    <input type="email" id="email" placeholder="Email" required />
-    <input type="text" id="login" placeholder="Login" required />
-    <input type="password" id="password" placeholder="Password" required />
+  <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+    <input type="text" formControlName="name" placeholder="Name" required />
+    <div class="error" *ngIf="signUpForm.get('name')?.touched && signUpForm.get('name')?.errors?.['required']">
+      Name is required
+    </div>
 
+    <input type="email" formControlName="email" placeholder="Email" required />
+    <div class="error" *ngIf="signUpForm.get('email')?.touched && signUpForm.get('email')?.errors?.['required']">
+      Email is required
+    </div>
+    <div class="error" *ngIf="signUpForm.get('email')?.errors?.['pattern']">
+      Please enter a valid email address
+    </div>
+
+    <input type="text" formControlName="login" placeholder="Login" required />
+    <div class="error" *ngIf="signUpForm.get('login')?.touched && signUpForm.get('login')?.errors?.['required']">
+      Login is required
+    </div>
+
+    <input type="password" formControlName="password" placeholder="Password" required />
+    <div class="error" *ngIf="signUpForm.get('password')?.touched && signUpForm.get('password')?.errors?.['required']">
+      Password is required
+    </div>
+    <div class="error" *ngIf="signUpForm.get('password')?.errors?.['minlength']">
+      Password must be at least 6 characters
+    </div>
+
+    <input type="password" formControlName="confirmPassword" placeholder="Confirm Password" required />
+    <div class="error" *ngIf="signUpForm.get('confirmPassword')?.touched && signUpForm.hasError('mismatch')">
+      Passwords do not match
+    </div>
+
+    <div class="error">
+      {{ errorMessage }}
+    </div>
+    
     <button type="submit" class="btn btn-filled">Sign Up</button>
   </form>
-
+  <button class="btn btn-outlined" (click)="loginWithAuth0()">Sign Up with Auth0</button>
   <p>Already have an account? <a routerLink="/auth/signin">Sign In</a></p>
 </div>

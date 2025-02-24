@@ -9,11 +9,13 @@ import { DataService } from '../../../services/data.service';
   styleUrl: './user-profile.component.scss'
 })
 export class UserProfileComponent {
-  name: string;
+  name: string = '';
 
   constructor(private route: ActivatedRoute, private dataService: DataService) {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    const user = this.dataService.getUserById(id);
-    this.name = user?.name || '';
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      const user = this.dataService.getUserById(id);
+      this.name = user?.name || '';
+    }
   }
 }

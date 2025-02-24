@@ -1,8 +1,17 @@
 <header>
   <a class="logo" routerLink='/'>Quizzes</a>
   <app-navbar />
-  <div class="auth-buttons">
-    <a routerLink="/auth/signup" class="btn btn-outlined">Sign Up</a>
-    <a routerLink="/auth/signin" class="btn btn-filled">Sign In</a>
+  <div class="auth">
+    <ng-container *ngIf="user; else guestLinks">
+      <div>
+        <div>{{ user.name }}</div>
+        <div>{{ user.email }}</div>
+      </div>
+      <button class="btn btn-outlined" (click)="logout()">Logout</button>
+    </ng-container>
+    <ng-template #guestLinks>
+      <a routerLink="/auth/signup" class="btn btn-outlined">Sign Up</a>
+      <a routerLink="/auth/signin" class="btn btn-filled">Sign In</a>
+    </ng-template>
   </div>
 </header>
