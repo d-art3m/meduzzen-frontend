@@ -1,12 +1,22 @@
 <div class="container">
   <h1>Sign In</h1>
-  
-  <form>
-    <input type="text" id="login" placeholder="Login" required />
-    <input type="password" id="password" placeholder="Password" required />
+  <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+    <input type="text" formControlName="login" placeholder="Login" required />
+    <div class="error" *ngIf="signInForm.get('login')?.touched && signInForm.get('login')?.errors?.['required']">
+      Login is required
+    </div>
+
+    <input type="password" formControlName="password" placeholder="Password" required />
+    <div class="error" *ngIf="signInForm.get('password')?.touched && signInForm.get('password')?.errors?.['required']">
+      Password is required
+    </div>
+
+    <div class="error">
+      {{ errorMessage }}
+    </div>
 
     <button type="submit" class="btn btn-filled">Sign In</button>
   </form>
-
+  <button class="btn btn-outlined" (click)="loginWithAuth0()">Sign In with Auth0</button>
   <p>Don't have an account? <a routerLink="/auth/signup">Sign Up</a></p>
 </div>
