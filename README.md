@@ -33,7 +33,15 @@ npm install
 4. Open the `.env` file and configure the following environment variables:
 ```bash
 # The port on which the app will run (default: 4200)
-PORT = *
+NG_APP_PORT = 
+
+# The base URL for the backend API
+NG_APP_API_URL = 
+
+# Auth0 configuration
+NG_APP_AUTH0_DOMAIN = 
+NG_APP_AUTH0_CLIENT_ID = 
+NG_APP_AUTH0_AUDIENCE = 
 ```
 
 ## Development server

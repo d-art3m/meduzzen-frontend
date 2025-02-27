@@ -36,6 +36,7 @@ export class SignInComponent {
         .signIn(this.signInForm.value)
         .subscribe({
           next: () => {
+            this.authService.getCurrentUser();
             this.router.navigate(['/']);
           },
           error: (err: any) => {
