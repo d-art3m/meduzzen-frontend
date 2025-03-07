@@ -60,6 +60,10 @@ export class AuthService {
       );
   }
 
+  setCurrentUser(user: User): void {
+    this.currentUserSubject.next(user);
+  }
+
   getCurrentUser(): void {
     this.http.get(`${this.apiUrl}/users/me`)
       .pipe(

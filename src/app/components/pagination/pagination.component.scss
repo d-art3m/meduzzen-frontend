@@ -1,0 +1,13 @@
+@use 'btn.styles';
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+
+  button {
+    &.active {
+      background-color: var(--accent-color);
+    }
+  }
+}
