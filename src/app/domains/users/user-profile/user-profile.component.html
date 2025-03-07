@@ -1,11 +1,28 @@
 <div class="container">
-  <h2>{{ name }}</h2>
-  <div class="content">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, veniam. Omnis deserunt laborum iste amet architecto tenetur laudantium ipsa commodi.
-    Nisi saepe laudantium eveniet temporibus, magni, unde commodi minus sunt fugiat, veritatis est suscipit accusamus provident quas totam eaque voluptatibus!
-    Ipsa officia facere nostrum distinctio sunt fugiat, quas facilis numquam laudantium consequatur placeat deleniti, harum reiciendis ducimus modi debitis suscipit.
-    Voluptate necessitatibus doloremque quo quia odit vero consequuntur nobis sed beatae? Cumque veniam porro aperiam laboriosam nam animi voluptatum nesciunt.
-    Magni nam velit amet tempora sed, commodi ea harum porro id quo, vel ipsam mollitia in, voluptate natus? Aliquid, delectus.
-    Rerum odio facere quasi sapiente veniam culpa, aliquam hic! Aliquam autem doloremque impedit quis excepturi, itaque voluptatum eveniet aperiam fugit?
-  </div>
+  <ng-container *ngIf="loading; else content">
+    <div>Loading...</div>
+  </ng-container>
+
+  <ng-template #content>
+    <ng-container *ngIf="error; else userProfile">
+      <div class="error">{{ error }}</div>
+    </ng-container>
+
+    <ng-template #userProfile>
+      <ng-container *ngIf="isCurrentUser">
+        <button class="btn btn-outlined" (click)="openEditModal()">Edit</button>
+        <app-modal [showModal]="isEditModalOpen" title="Edit Profile" (close)="closeEditModal()">
+          <ng-container *ngIf="user">
+            <app-user-edit 
+              [user]="user!"
+              (update)="handleProfileUpdate($event)" 
+              (cancel)="closeEditModal()">
+            </app-user-edit>
+          </ng-container>
+        </app-modal>
+      </ng-container>
+      <h2>Name: {{ user?.name }}</h2>
+      <h2>Email: {{ user?.email }}</h2>
+    </ng-template>
+  </ng-template>
 </div>

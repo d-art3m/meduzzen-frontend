@@ -1,0 +1,26 @@
+<div class="container">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Name:</label>
+      <input type="text" formControlName="name" />
+      <div class="error" *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched">
+        Name is required
+      </div>
+    </div>
+    <div>
+      <label>Email:</label>
+      <input type="email" formControlName="email" [disabled]="true" />
+    </div>
+    <div>
+      <label>Password:</label>
+      <input type="password" formControlName="password" />
+      <div class="error" *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched">
+        Password must be at least 6 characters
+      </div>
+    </div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+    <button type="submit" class="btn btn-outlined">Save Changes</button>
+    <button type="button" class="btn btn-outlined" (click)="onCancel()">Cancel</button>
+    <button type="button" class="btn btn-filled" (click)="onDelete()">Delete Profile</button>
+  </form>
+</div>

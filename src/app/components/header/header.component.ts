@@ -4,15 +4,18 @@ import { RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { NgIf } from '@angular/common';
 import { User } from '../../models/user.model';
+import { ModalComponent } from '../modal/modal.component';
+import { UserEditComponent } from '../user-edit/user-edit.component';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, NavbarComponent, NgIf],
+  imports: [RouterLink, NavbarComponent, NgIf, ModalComponent, UserEditComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {
-  user: Partial<User> | null = null;
+  user: User | null = null;
+  isEditModalOpen: boolean = false;
 
   constructor(public authService: AuthService) {}
 
@@ -26,6 +29,20 @@ export class HeaderComponent implements OnInit {
     if (!this.user && this.authService.isAuthenticated()) {
       this.authService.getCurrentUser();
     }
+  }
+
+  openEditModal(): void {
+    this.isEditModalOpen = true;
+  }
+
+  closeEditModal(): void {
+    this.isEditModalOpen = false;
+  }
+
+  handleProfileUpdate(updatedUser: User): void {
+    this.user = updatedUser;
+    this.authService.setCurrentUser(updatedUser);
+    this.closeEditModal();
   }
 
   logout(): void {
