@@ -1,19 +1,61 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DataService } from '../../../services/data.service';
+import { NgIf } from '@angular/common';
+import { ModalComponent } from '../../../components/modal/modal.component';
+import { CompanyEditComponent } from '../company-edit/company-edit.component';
+import { Company } from '../../../models/company.model';
+import { CompanyService } from '../../../services/company.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-company-profile',
-  imports: [],
+  imports: [NgIf, ModalComponent, CompanyEditComponent],
   templateUrl: './company-profile.component.html',
   styleUrl: './company-profile.component.scss'
 })
-export class CompanyProfileComponent {
-  name: string;
+export class CompanyProfileComponent implements OnInit {
+  company: Company | null = null;
+  error: string | null = null;
+  loading: boolean = false;
+  isOwner: boolean = false;
+  isEditModalOpen: boolean = false;
 
-  constructor(private route: ActivatedRoute, private dataService: DataService) {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    const company = this.dataService.getCompanyById(id);
-    this.name = company?.name || '';
+  constructor(
+    private route: ActivatedRoute,
+    private companyService: CompanyService,
+    private authService: AuthService,
+  ) {}
+
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.loading = true;
+      this.companyService.getCompanyById(id).subscribe({
+        next: (res: any) => {
+          this.company = res.detail;
+          this.authService.currentUser$.subscribe(currentUser => {
+            this.isOwner = currentUser?.id === this.company?.owner?.id;
+          });
+          this.loading = false;
+        },
+        error: (err: any) => {
+          this.error = err.error?.detail?.error || err.message;
+          this.loading = false;
+        }
+      });
+    }
+  }
+
+  openEditModal(): void {
+    this.isEditModalOpen = true;
+  }
+
+  closeEditModal(): void {
+    this.isEditModalOpen = false;
+  }
+
+  handleCompanyUpdate(updatedCompany: Company): void {
+    this.company = updatedCompany;
+    this.closeEditModal();
   }
 }

@@ -5,7 +5,7 @@ import { AuthService } from '../../services/auth.service';
 import { NgIf } from '@angular/common';
 import { User } from '../../models/user.model';
 import { ModalComponent } from '../modal/modal.component';
-import { UserEditComponent } from '../user-edit/user-edit.component';
+import { UserEditComponent } from '../../domains/users/user-edit/user-edit.component';
 
 @Component({
   selector: 'app-header',

@@ -5,7 +5,7 @@ import { UserService } from '../../../services/user.service';
 import { NgIf } from '@angular/common';
 import { AuthService } from '../../../services/auth.service';
 import { ModalComponent } from '../../../components/modal/modal.component';
-import { UserEditComponent } from '../../../components/user-edit/user-edit.component';
+import { UserEditComponent } from '../user-edit/user-edit.component';
 
 @Component({
   selector: 'app-user-profile',
