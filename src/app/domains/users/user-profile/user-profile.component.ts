@@ -2,14 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../../../models/user.model';
 import { UserService } from '../../../services/user.service';
-import { NgIf } from '@angular/common';
 import { AuthService } from '../../../services/auth.service';
 import { ModalComponent } from '../../../components/modal/modal.component';
 import { UserEditComponent } from '../user-edit/user-edit.component';
 
 @Component({
   selector: 'app-user-profile',
-  imports: [ModalComponent, UserEditComponent, NgIf],
+  imports: [ModalComponent, UserEditComponent],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss',
 })

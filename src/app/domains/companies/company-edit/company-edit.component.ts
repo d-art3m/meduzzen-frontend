@@ -6,13 +6,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { NgIf } from '@angular/common';
 import { CompanyService } from '../../../services/company.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-company-edit',
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule],
   templateUrl: './company-edit.component.html',
   styleUrl: './company-edit.component.scss',
 })

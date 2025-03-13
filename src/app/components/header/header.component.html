@@ -2,25 +2,23 @@
   <a class="logo" routerLink='/'>Quizzes</a>
   <app-navbar />
   <div class="auth">
-    <ng-container *ngIf="user; else guestLinks">
+    @if (user) {
       <div class="pointer" (click)="openEditModal()">
         <div>{{ user.name }}</div>
         <div>{{ user.email }}</div>
       </div>
       <app-modal [showModal]="isEditModalOpen" title="Edit Profile" (close)="closeEditModal()">
-        <ng-container *ngIf="user">
-          <app-user-edit 
-            [user]="user!"
-            (update)="handleProfileUpdate($event)" 
-            (cancel)="closeEditModal()">
-          </app-user-edit>
-        </ng-container>
+        <app-user-edit 
+          [user]="user!" 
+          (update)="handleProfileUpdate($event)" 
+          (cancel)="closeEditModal()">
+        </app-user-edit>
       </app-modal>
       <button class="btn btn-outlined" (click)="logout()">Logout</button>
-    </ng-container>
-    <ng-template #guestLinks>
+    }
+    @else {
       <a routerLink="/auth/signup" class="btn btn-outlined">Sign Up</a>
       <a routerLink="/auth/signin" class="btn btn-filled">Sign In</a>
-    </ng-template>
+    }
   </div>
 </header>

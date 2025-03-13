@@ -1,9 +1,11 @@
-<nav *ngIf="totalPages > 1" class="pagination">
+@if (totalPages > 1) {
+<nav class="pagination">
   <button class="btn btn-outlined" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Prev</button>
-  <ng-container *ngFor="let page of [].constructor(totalPages); let index = index">
-    <button class="btn btn-outlined" (click)="changePage(index + 1)" [class.active]="currentPage === index + 1">
-      {{ index + 1 }}
+  @for (page of [].constructor(totalPages); track $index) {
+    <button class="btn btn-outlined" (click)="changePage($index + 1)" [class.active]="currentPage === $index + 1">
+      {{ $index + 1 }}
     </button>
-  </ng-container>
+  }
   <button class="btn btn-outlined" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
 </nav>
+}

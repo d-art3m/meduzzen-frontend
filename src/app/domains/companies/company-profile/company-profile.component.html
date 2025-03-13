@@ -1,29 +1,25 @@
 <div class="container">
-  <ng-container *ngIf="loading; else content">
+  @if (loading) {
     <div>Loading...</div>
-  </ng-container>
+  } @else if (error) {
+    <div class="error">{{ error }}</div>
+  } @else {
+    <h2>Company: {{ company?.name }}</h2>
+    <p>Owner: {{ company?.owner?.name }}</p>
+    <p>Description: {{ company?.description }}</p>
+    <p>Visibility: {{ company?.visibility }}</p>
 
-  <ng-template #content>
-    <ng-container *ngIf="error; else profile">
-      <div class="error">{{ error }}</div>
-    </ng-container>
-
-    <ng-template #profile>
-      <h2>Company: {{ company?.name }}</h2>
-      <p>Owner: {{ company?.owner?.name }}</p>
-      <p>Description: {{ company?.description }}</p>
-      <p>Visibility: {{ company?.visibility }}</p>
-
-      <div *ngIf="isOwner">
+    @if (isOwner) {
+      <div>
         <button class="btn btn-outlined" (click)="openEditModal()">Edit</button>
         <app-modal [showModal]="isEditModalOpen" title="Edit Company" (close)="closeEditModal()">
-          <app-company-edit 
-            [company]="company!" 
-            (update)="handleCompanyUpdate($event)" 
+          <app-company-edit
+            [company]="company!"
+            (update)="handleCompanyUpdate($event)"
             (cancel)="closeEditModal()">
           </app-company-edit>
         </app-modal>
       </div>
-    </ng-template>
-  </ng-template>
+    }
+  }
 </div>

@@ -7,12 +7,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
-import { NgIf } from '@angular/common';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-user-edit',
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule],
   templateUrl: './user-edit.component.html',
   styleUrl: './user-edit.component.scss',
 })

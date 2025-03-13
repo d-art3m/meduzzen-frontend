@@ -1,28 +1,21 @@
 <div class="container">
-  <ng-container *ngIf="loading; else content">
+  @if (loading) {
     <div>Loading...</div>
-  </ng-container>
-
-  <ng-template #content>
-    <ng-container *ngIf="error; else userProfile">
-      <div class="error">{{ error }}</div>
-    </ng-container>
-
-    <ng-template #userProfile>
-      <ng-container *ngIf="isCurrentUser">
-        <button class="btn btn-outlined" (click)="openEditModal()">Edit</button>
-        <app-modal [showModal]="isEditModalOpen" title="Edit Profile" (close)="closeEditModal()">
-          <ng-container *ngIf="user">
-            <app-user-edit 
-              [user]="user!"
-              (update)="handleProfileUpdate($event)" 
-              (cancel)="closeEditModal()">
-            </app-user-edit>
-          </ng-container>
-        </app-modal>
-      </ng-container>
-      <h2>Name: {{ user?.name }}</h2>
-      <h2>Email: {{ user?.email }}</h2>
-    </ng-template>
-  </ng-template>
+  } @else if (error) {
+    <div class="error">{{ error }}</div>
+  } @else {
+    <h2>Name: {{ user?.name }}</h2>
+    <h2>Email: {{ user?.email }}</h2>
+    
+    @if (isCurrentUser) {
+      <button class="btn btn-outlined" (click)="openEditModal()">Edit</button>
+      <app-modal [showModal]="isEditModalOpen" title="Edit Profile" (close)="closeEditModal()">
+        <app-user-edit
+          [user]="user!"
+          (update)="handleProfileUpdate($event)"
+          (cancel)="closeEditModal()">
+        </app-user-edit>
+      </app-modal>
+    }
+  }
 </div>

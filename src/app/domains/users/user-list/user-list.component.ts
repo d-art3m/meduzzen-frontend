@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { User } from '../../../models/user.model';
 import { PaginationComponent } from '../../../components/pagination/pagination.component';
@@ -7,7 +6,7 @@ import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-user-list',
-  imports: [NgFor, RouterLink, PaginationComponent, NgIf],
+  imports: [RouterLink, PaginationComponent],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.scss'
 })
@@ -17,6 +16,7 @@ export class UserListComponent implements OnInit {
   currentPage: number = 1;
   limit: number = 10;
   error: string = '';
+  loading: boolean = false;
 
   constructor(private userService: UserService) {}
 
@@ -25,14 +25,17 @@ export class UserListComponent implements OnInit {
   }
 
   fetchUsers(page: number): void {
+    this.loading = true;
     this.userService.getUsers(page, this.limit).subscribe({
       next: (res: any) => {
         this.users = res.detail.items;
         this.totalUsers = res.detail.total;
         this.currentPage = page;
+        this.loading = false;
       },
       error: (err: any) => {
         this.error = err.error?.detail?.error || err.message;
+        this.loading = false;
       }
     });
   }

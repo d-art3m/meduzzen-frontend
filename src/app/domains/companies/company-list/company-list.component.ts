@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Company, CompanyType } from '../../../models/company.model';
 import { CompanyService } from '../../../services/company.service';
@@ -10,10 +9,8 @@ import { ModalComponent } from '../../../components/modal/modal.component';
 @Component({
   selector: 'app-company-list',
   imports: [
-    NgFor,
     RouterLink,
     PaginationComponent,
-    NgIf,
     CompanyCreateComponent,
     ModalComponent,
   ],
@@ -26,6 +23,7 @@ export class CompanyListComponent implements OnInit {
   currentPage: number = 1;
   limit: number = 10;
   error: string = '';
+  loading: boolean = false;
 
   selectedTab: CompanyType = CompanyType.Public;
   isCreateModalOpen: boolean = false;
@@ -39,15 +37,18 @@ export class CompanyListComponent implements OnInit {
   }
 
   loadCompanies() {
+    this.loading = true;
     this.companyService
       .getCompanies(this.selectedTab, this.currentPage, this.limit)
       .subscribe({
         next: (res: any) => {
           this.companies = res.detail.items;
           this.totalCompanies = res.detail.total;
+          this.loading = false;
         },
         error: (err: any) => {
           this.error = err.error?.detail?.error || err.message;
+          this.loading = false;
         },
       });
   }
@@ -72,7 +73,7 @@ export class CompanyListComponent implements OnInit {
   }
 
   handleCompanyCreated(newCompany: Company): void {
-    this.companies.push(newCompany);
     this.closeCreateModal();
+    this.loadCompanies();
   }
 }

@@ -9,11 +9,10 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
-import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-sign-up',
-  imports: [RouterLink, ReactiveFormsModule, NgIf],
+  imports: [RouterLink, ReactiveFormsModule],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss',
 })

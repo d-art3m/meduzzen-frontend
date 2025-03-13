@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NgIf } from '@angular/common';
 import { ModalComponent } from '../../../components/modal/modal.component';
 import { CompanyEditComponent } from '../company-edit/company-edit.component';
 import { Company } from '../../../models/company.model';
@@ -9,7 +8,7 @@ import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-company-profile',
-  imports: [NgIf, ModalComponent, CompanyEditComponent],
+  imports: [ModalComponent, CompanyEditComponent],
   templateUrl: './company-profile.component.html',
   styleUrl: './company-profile.component.scss'
 })

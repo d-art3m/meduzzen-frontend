@@ -13,13 +13,19 @@
             (click)="onTabChange(CompanyType.Personal)">My companies</button>
   </div>
 
-  <div *ngIf="error" class="error">{{ error }}</div>
-
-  <ul class="list">
-    <li class="card" *ngFor="let company of companies">
-      <a [routerLink]="['/companies', company.id]">{{ company.name }}</a>
-    </li>
-  </ul>
+  @if (loading) {
+    <div>Loading...</div>
+  } @else if (error) {
+    <div class="error">{{ error }}</div>
+  } @else {
+    <ul class="list">
+      @for (company of companies; track company.id) {
+        <li class="card">
+          <a [routerLink]="['/companies', company.id]">{{ company.name }}</a>
+        </li>
+      }
+    </ul>
+  }
 
   <app-modal [showModal]="isCreateModalOpen" title="Create Company" (close)="closeCreateModal()">
     <app-company-create (companyCreated)="handleCompanyCreated($event)" (cancel)="closeCreateModal()">

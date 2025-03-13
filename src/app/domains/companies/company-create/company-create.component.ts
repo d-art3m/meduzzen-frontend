@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import {
   FormBuilder,
@@ -11,7 +10,7 @@ import { CompanyVisibility } from '../../../models/company.model';
 
 @Component({
   selector: 'app-company-create',
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule],
   templateUrl: './company-create.component.html',
   styleUrl: './company-create.component.scss',
 })
