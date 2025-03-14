@@ -3,9 +3,9 @@
     <div>
       <label>Name:</label>
       <input type="text" formControlName="name" />
-      <div class="error" *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched">
-        Name is required
-      </div>
+      @if (userForm.get('name')?.invalid && userForm.get('name')?.touched) {
+        <div class="error">Name is required</div>
+      }
     </div>
     <div>
       <label>Email:</label>
@@ -14,11 +14,14 @@
     <div>
       <label>Password:</label>
       <input type="password" formControlName="password" />
-      <div class="error" *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched">
-        Password must be at least 6 characters
-      </div>
+      @if (userForm.get('password')?.invalid && userForm.get('password')?.touched) {
+        <div class="error">Password must be at least 6 characters</div>
+      }
     </div>
-    <div *ngIf="error" class="error">{{ error }}</div>
+    
+    @if (error) {
+      <div class="error">{{ error }}</div>
+    }
     <button type="submit" class="btn btn-outlined">Save Changes</button>
     <button type="button" class="btn btn-outlined" (click)="onCancel()">Cancel</button>
     <button type="button" class="btn btn-filled" (click)="onDelete()">Delete Profile</button>

@@ -2,14 +2,14 @@
   <h1>Sign In</h1>
   <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
     <input type="text" formControlName="login" placeholder="Login" required />
-    <div class="error" *ngIf="signInForm.get('login')?.touched && signInForm.get('login')?.errors?.['required']">
-      Login is required
-    </div>
+    @if (signInForm.get('login')?.touched && signInForm.get('login')?.errors?.['required']) {
+      <div class="error">Login is required</div>
+    }
 
     <input type="password" formControlName="password" placeholder="Password" required />
-    <div class="error" *ngIf="signInForm.get('password')?.touched && signInForm.get('password')?.errors?.['required']">
-      Password is required
-    </div>
+    @if (signInForm.get('password')?.touched && signInForm.get('password')?.errors?.['required']) {
+      <div class="error">Password is required</div>
+    }
 
     <div class="error">
       {{ errorMessage }}

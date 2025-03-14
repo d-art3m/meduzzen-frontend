@@ -1,17 +1,11 @@
 <div class="container">
-  <ng-container *ngIf="error; else content">
-    <div>Error: {{ error }}</div>
-  </ng-container>
-
-  <ng-template #content>
-    <ng-container *ngIf="healthCheck; else loading">
-      <div>Status Code: {{ healthCheck.status_code }}</div>
-      <div>Detail: {{ healthCheck.detail }}</div>
-      <div>Result: {{ healthCheck.result }}</div>
-    </ng-container>
-  </ng-template>
-
-  <ng-template #loading>
+  @if (loading) {
     <div>Loading...</div>
-  </ng-template>
+  } @else if (error) {
+    <div class="error">{{ error }}</div>
+  } @else {
+    <div>Status Code: {{ healthCheck?.status_code }}</div>
+    <div>Detail: {{ healthCheck?.detail }}</div>
+    <div>Result: {{ healthCheck?.result }}</div>
+  }
 </div>

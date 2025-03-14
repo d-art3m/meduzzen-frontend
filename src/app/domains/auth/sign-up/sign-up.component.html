@@ -2,39 +2,37 @@
   <h1>Sign Up</h1>
   <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
     <input type="text" formControlName="name" placeholder="Name" required />
-    <div class="error" *ngIf="signUpForm.get('name')?.touched && signUpForm.get('name')?.errors?.['required']">
-      Name is required
-    </div>
+    @if (signUpForm.get('name')?.touched && signUpForm.get('name')?.errors?.['required']) {
+      <div class="error">Name is required</div>
+    }
 
     <input type="email" formControlName="email" placeholder="Email" required />
-    <div class="error" *ngIf="signUpForm.get('email')?.touched && signUpForm.get('email')?.errors?.['required']">
-      Email is required
-    </div>
-    <div class="error" *ngIf="signUpForm.get('email')?.errors?.['pattern']">
-      Please enter a valid email address
-    </div>
+    @if (signUpForm.get('email')?.touched && signUpForm.get('email')?.errors?.['required']) {
+      <div class="error">Email is required</div>
+    }
+    @if (signUpForm.get('email')?.errors?.['pattern']) {
+      <div class="error">Please enter a valid email address</div>
+    }
 
     <input type="text" formControlName="login" placeholder="Login" required />
-    <div class="error" *ngIf="signUpForm.get('login')?.touched && signUpForm.get('login')?.errors?.['required']">
-      Login is required
-    </div>
+    @if (signUpForm.get('login')?.touched && signUpForm.get('login')?.errors?.['required']) {
+      <div class="error">Login is required</div>
+    }
 
     <input type="password" formControlName="password" placeholder="Password" required />
-    <div class="error" *ngIf="signUpForm.get('password')?.touched && signUpForm.get('password')?.errors?.['required']">
-      Password is required
-    </div>
-    <div class="error" *ngIf="signUpForm.get('password')?.errors?.['minlength']">
-      Password must be at least 6 characters
-    </div>
+    @if (signUpForm.get('password')?.touched && signUpForm.get('password')?.errors?.['required']) {
+      <div class="error">Password is required</div>
+    }
+    @if (signUpForm.get('password')?.errors?.['minlength']) {
+      <div class="error">Password must be at least 6 characters</div>
+    }
 
     <input type="password" formControlName="confirmPassword" placeholder="Confirm Password" required />
-    <div class="error" *ngIf="signUpForm.get('confirmPassword')?.touched && signUpForm.hasError('mismatch')">
-      Passwords do not match
-    </div>
+    @if (signUpForm.get('confirmPassword')?.touched && signUpForm.hasError('mismatch')) {
+      <div class="error">Passwords do not match</div>
+    }
 
-    <div class="error">
-      {{ errorMessage }}
-    </div>
+    <div class="error">{{ errorMessage }}</div>
     
     <button type="submit" class="btn btn-filled">Sign Up</button>
   </form>
