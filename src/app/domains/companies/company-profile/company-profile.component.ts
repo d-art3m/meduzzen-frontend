@@ -5,10 +5,11 @@ import { CompanyEditComponent } from '../company-edit/company-edit.component';
 import { Company } from '../../../models/company.model';
 import { CompanyService } from '../../../services/company.service';
 import { AuthService } from '../../../services/auth.service';
+import { CompanyQuizListComponent } from '../company-quiz-list/company-quiz-list.component';
 
 @Component({
   selector: 'app-company-profile',
-  imports: [ModalComponent, CompanyEditComponent],
+  imports: [ModalComponent, CompanyEditComponent, CompanyQuizListComponent],
   templateUrl: './company-profile.component.html',
   styleUrl: './company-profile.component.scss'
 })

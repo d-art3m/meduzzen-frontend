@@ -1,0 +1,19 @@
+@use 'btn.styles';
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .btn {
+    margin-left: 2rem;
+  }
+}
+
+ul {
+  li {
+    a {
+      text-decoration: none;
+      color: var(--text-color);
+    }
+  }
+}
