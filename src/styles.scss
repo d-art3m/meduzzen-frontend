@@ -6,16 +6,23 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  --bg-gradient: linear-gradient(135deg, #001f3f, #014e38, #01654e);
+
   --text-color: #fff;
-  --bg-color: #000;
+  --dark-text-color: #000;
   
-  --primary-color: #007bff;
-  --secondary-color: #163554;
+  --primary-color: #007bff88;
+  --secondary-color: #16355488;
   --accent-color: #f1750f;
 
   --overlay-color: rgba(128, 128, 128, 0.5);
-  
-  --fs-sm: 0.5rem;
+  --modal-bg: #0e65a4;
+
+  --card-bg: rgba(255, 255, 255, 0.2);
+  --card-border: rgba(255, 255, 255, 0.3);
+  --card-shadow: rgba(31, 38, 135, 0.37);
+
+  --fs-sm: 0.75rem;
   --fs-md: 1rem;
   --fs-lg: 1.5rem;
   --fs-xl: 2rem;
@@ -33,55 +40,83 @@
 
 body {
   color: var(--text-color);
-  background-color: var(--bg-color);
+  background: var(--bg-gradient);
 }
 
 h1 {
   font-size: var(--fs-xl);
   font-weight: var(--fw-bold);
-  text-align: center;
-  padding: 0.5rem;
 }
 
 h2 {
   font-size: var(--fs-lg);
   font-weight: var(--fw-medium);
-  padding: 0.5rem;
 }
 
 .container {
-  padding: 0.5rem;
-}
-
-.content {
-  padding: 0.5rem;
-}
-
-.list {
-  padding: 0.5rem 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  width: max-content;
-}
-
-.card {
-  margin: 0.5rem;
-  padding: 0.75rem;
-  background-color: var(--primary-color);
-  border: 2px solid var(--text-color);
-  border-radius: 0.5rem;
-}
-
-.flex {
-  display: flex;
-}
-
-.center {
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow-wrap: anywhere;
+}
+
+.content {
+  padding: 1rem;
+  overflow-wrap: anywhere;
+}
+
+.list {
+  padding: 1rem 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  min-width: 50%;
+}
+
+.card {
+  margin: 0.5rem;
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  overflow-wrap: anywhere;
+
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
+  border-radius: 0.5rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px 0 var(--card-shadow);
+
+  a {
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    margin: 0.25rem;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-medium);
+  }
+
+  h1 {
+    font-size: var(--fs-md);
+    font-weight: var(--fw-medium);
+  }
+  
+  h2 {
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-regular);
+  }
+}
+
+.flex {
+  display: flex;
 }
 
 .error {

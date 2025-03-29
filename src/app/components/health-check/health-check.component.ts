@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HealthCheckResponse } from '../../types/health-check.types';
 import { HttpService } from '../../services/http.service';
+import { LoadingComponent } from '../loading/loading.component';
 
 @Component({
   selector: 'app-health-check',
-  imports: [],
+  imports: [LoadingComponent],
   templateUrl: './health-check.component.html',
   styleUrl: './health-check.component.scss'
 })

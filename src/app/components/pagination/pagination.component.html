@@ -1,11 +1,33 @@
 @if (totalPages > 1) {
-<nav class="pagination">
-  <button class="btn btn-outlined" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Prev</button>
-  @for (page of [].constructor(totalPages); track $index) {
-    <button class="btn btn-outlined" (click)="changePage($index + 1)" [class.active]="currentPage === $index + 1">
-      {{ $index + 1 }}
+  <nav class="pagination">
+    <button 
+      class="btn btn-outlined"
+      (click)="changePage(currentPage - 1)"
+      [disabled]="currentPage === 1"
+    >
+      &#10094;
     </button>
-  }
-  <button class="btn btn-outlined" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
-</nav>
+
+    @for (page of pages; track page) {
+      @if (page === -1) {
+        <span class="ellipsis">...</span>
+      } @else {
+        <button
+          class="btn btn-outlined page-number"
+          [class.active]="isCurrentPage(page)"
+          (click)="changePage(page)"
+        >
+          {{ page }}
+        </button>
+      }
+    }
+
+    <button 
+      class="btn btn-outlined"
+      (click)="changePage(currentPage + 1)"
+      [disabled]="currentPage === totalPages"
+    >
+      &#10095;
+    </button>
+  </nav>
 }

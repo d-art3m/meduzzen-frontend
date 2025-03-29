@@ -1,5 +1,7 @@
 <nav>
-  <ul>
+  <button class="burger-menu" (click)="toggleMenu()">&#9776;</button>
+  
+  <ul [class.open]="isMenuOpen">
     <li><a routerLink="/quizzes">Quizzes</a></li>
     <li><a routerLink="/companies">Companies</a></li>
     <li><a routerLink="/users">Users</a></li>

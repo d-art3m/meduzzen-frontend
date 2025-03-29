@@ -6,10 +6,11 @@ import { Company } from '../../../models/company.model';
 import { CompanyService } from '../../../services/company.service';
 import { AuthService } from '../../../services/auth.service';
 import { CompanyQuizListComponent } from '../company-quiz-list/company-quiz-list.component';
+import { LoadingComponent } from '../../../components/loading/loading.component';
 
 @Component({
   selector: 'app-company-profile',
-  imports: [ModalComponent, CompanyEditComponent, CompanyQuizListComponent],
+  imports: [ModalComponent, CompanyEditComponent, CompanyQuizListComponent, LoadingComponent],
   templateUrl: './company-profile.component.html',
   styleUrl: './company-profile.component.scss'
 })

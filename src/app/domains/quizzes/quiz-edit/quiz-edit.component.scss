@@ -1,22 +1,2 @@
 @use 'btn.styles';
-
-.container {
-  form {
-    div {
-      display: flex;
-      flex-direction: column;
-    }
-
-    input, textarea, select {
-      padding: 0.75rem;
-      margin: 0.5rem 0;
-      border: 2px solid var(--primary-color);
-      border-radius: 0.5rem;
-      font-size: var(--fs-md);
-    }
-  }
-  
-  .btn {
-    margin: 0.5rem;
-  }
-}
+@use 'modal.styles';

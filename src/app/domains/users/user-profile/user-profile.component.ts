@@ -5,10 +5,11 @@ import { UserService } from '../../../services/user.service';
 import { AuthService } from '../../../services/auth.service';
 import { ModalComponent } from '../../../components/modal/modal.component';
 import { UserEditComponent } from '../user-edit/user-edit.component';
+import { LoadingComponent } from '../../../components/loading/loading.component';
 
 @Component({
   selector: 'app-user-profile',
-  imports: [ModalComponent, UserEditComponent],
+  imports: [ModalComponent, UserEditComponent, LoadingComponent],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss',
 })

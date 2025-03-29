@@ -1,6 +1,6 @@
-<div class="container">
+<div class="content">
   @if (loading) {
-    <div>Loading...</div>
+    <app-loading />
   } @else if (error) {
     <div class="error">{{ error }}</div>
   } @else {

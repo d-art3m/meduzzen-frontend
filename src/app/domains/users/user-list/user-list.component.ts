@@ -3,10 +3,11 @@ import { RouterLink } from '@angular/router';
 import { User } from '../../../models/user.model';
 import { PaginationComponent } from '../../../components/pagination/pagination.component';
 import { UserService } from '../../../services/user.service';
+import { LoadingComponent } from '../../../components/loading/loading.component';
 
 @Component({
   selector: 'app-user-list',
-  imports: [RouterLink, PaginationComponent],
+  imports: [RouterLink, PaginationComponent, LoadingComponent],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.scss'
 })

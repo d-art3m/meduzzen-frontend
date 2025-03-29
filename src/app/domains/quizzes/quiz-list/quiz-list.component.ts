@@ -3,10 +3,11 @@ import { RouterLink } from '@angular/router';
 import { PaginationComponent } from '../../../components/pagination/pagination.component';
 import { Quiz } from '../../../models/quiz.model';
 import { QuizService } from '../../../services/quiz.service';
+import { LoadingComponent } from '../../../components/loading/loading.component';
 
 @Component({
   selector: 'app-quiz-list',
-  imports: [RouterLink, PaginationComponent],
+  imports: [RouterLink, PaginationComponent, LoadingComponent],
   templateUrl: './quiz-list.component.html',
   styleUrl: './quiz-list.component.scss',
 })

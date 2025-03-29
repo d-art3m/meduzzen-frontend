@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Quiz } from '../../../models/quiz.model';
 import { QuizService } from '../../../services/quiz.service';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../../../components/modal/modal.component';
+import { LoadingComponent } from '../../../components/loading/loading.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-quiz-item',
-  imports: [FormsModule, ModalComponent],
+  imports: [FormsModule, ModalComponent, LoadingComponent],
   templateUrl: './quiz-item.component.html',
   styleUrl: './quiz-item.component.scss',
 })
@@ -23,7 +25,7 @@ export class QuizItemComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private quizService: QuizService,
-    private router: Router
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -67,6 +69,6 @@ export class QuizItemComponent implements OnInit {
 
   closeResultsModal(): void {
     this.showResultsModal = false;
-    this.router.navigate(['/quizzes']);
+    this.location.back();
   }
 }

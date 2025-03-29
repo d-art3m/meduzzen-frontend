@@ -5,6 +5,7 @@ import { CompanyService } from '../../../services/company.service';
 import { PaginationComponent } from '../../../components/pagination/pagination.component';
 import { CompanyCreateComponent } from '../company-create/company-create.component';
 import { ModalComponent } from '../../../components/modal/modal.component';
+import { LoadingComponent } from '../../../components/loading/loading.component';
 
 @Component({
   selector: 'app-company-list',
@@ -13,6 +14,7 @@ import { ModalComponent } from '../../../components/modal/modal.component';
     PaginationComponent,
     CompanyCreateComponent,
     ModalComponent,
+    LoadingComponent,
   ],
   templateUrl: './company-list.component.html',
   styleUrl: './company-list.component.scss',
