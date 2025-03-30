@@ -1,0 +1,32 @@
+<div class="container">
+  @if (loading) {
+    <app-loading />
+  } @else if (error) {
+    <div class="error">{{ error }}</div>
+  } @else {
+    <div class="flex">
+      <h1>Company: {{ company?.name }}</h1>
+      @if (isOwner) {
+        <div>
+          <button class="btn btn-outlined" (click)="openEditModal()">&#9998;</button>
+          <app-modal [showModal]="isEditModalOpen" title="Edit Company" (close)="closeEditModal()">
+            <app-company-edit
+              [company]="company!"
+              (update)="handleCompanyUpdate($event)"
+              (cancel)="closeEditModal()">
+            </app-company-edit>
+          </app-modal>
+        </div>
+      }
+    </div>
+
+    <h2>Owner: {{ company?.owner?.name }}</h2>
+    <h2>Description: {{ company?.description }}</h2>
+    <h2>Visibility: {{ company?.visibility }}</h2>
+
+    <app-company-quiz-list 
+      [companyId]="company?.id!"
+      [isOwner]="isOwner">
+    </app-company-quiz-list>
+  }
+</div>

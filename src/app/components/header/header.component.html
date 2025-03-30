@@ -1,0 +1,24 @@
+<header>
+  <a class="logo" routerLink='/'>Quizzes App</a>
+  <app-navbar />
+  <div class="auth">
+    @if (user) {
+      <div class="pointer" (click)="openEditModal()">
+        <div>{{ user.name }}</div>
+        <div>{{ user.email }}</div>
+      </div>
+      <app-modal [showModal]="isEditModalOpen" title="Edit Profile" (close)="closeEditModal()">
+        <app-user-edit 
+          [user]="user!" 
+          (update)="handleProfileUpdate($event)" 
+          (cancel)="closeEditModal()">
+        </app-user-edit>
+      </app-modal>
+      <button class="btn btn-outlined" (click)="logout()">Logout</button>
+    }
+    @else {
+      <a routerLink="/auth/signup" class="btn btn-outlined">Sign Up</a>
+      <a routerLink="/auth/signin" class="btn btn-filled">Sign In</a>
+    }
+  </div>
+</header>

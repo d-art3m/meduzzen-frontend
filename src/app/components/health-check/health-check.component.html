@@ -1,0 +1,11 @@
+<div class="container">
+  @if (loading) {
+    <app-loading />
+  } @else if (error) {
+    <div class="error">{{ error }}</div>
+  } @else {
+    <div>Status Code: {{ healthCheck?.status_code }}</div>
+    <div>Detail: {{ healthCheck?.detail }}</div>
+    <div>Result: {{ healthCheck?.result }}</div>
+  }
+</div>

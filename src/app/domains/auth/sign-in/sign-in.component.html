@@ -1,0 +1,22 @@
+<div class="container">
+  <h1>Sign In</h1>
+  <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+    <input type="text" formControlName="login" placeholder="Login" required />
+    @if (signInForm.get('login')?.touched && signInForm.get('login')?.errors?.['required']) {
+      <div class="error">Login is required</div>
+    }
+
+    <input type="password" formControlName="password" placeholder="Password" required />
+    @if (signInForm.get('password')?.touched && signInForm.get('password')?.errors?.['required']) {
+      <div class="error">Password is required</div>
+    }
+
+    <div class="error">
+      {{ errorMessage }}
+    </div>
+
+    <button type="submit" class="btn btn-outlined">Sign In</button>
+  </form>
+  <button class="btn btn-outlined" (click)="loginWithAuth0()">Sign In with Auth0</button>
+  <p>Don't have an account? <a routerLink="/auth/signup">Sign Up</a></p>
+</div>

@@ -1,0 +1,25 @@
+@use 'btn.styles';
+
+button {
+  margin: 0 0.5rem;
+
+  &.active {
+    background-color: var(--accent-color);
+  }
+}
+
+.button-group {
+  margin: 1rem;
+  
+  .btn {
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-bold);
+  }
+
+  @media (max-width: 768px) {
+    .btn {
+      font-size: var(--fs-sm);
+      font-weight: var(--fw-light);
+    }
+  }
+}

@@ -1,0 +1,37 @@
+@use 'btn.styles';
+
+.container {
+  margin-top: 2rem;
+
+  h1 {
+    margin-bottom: 1rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    min-width: 75%;
+    gap: 1rem;
+
+    input {
+      padding: 0.75rem;
+      border: 2px solid var(--primary-color);
+      border-radius: 0.5rem;
+      font-size: var(--fs-md);
+    }
+  }
+  
+  .btn {
+    margin-top: 0.5rem;
+    min-width: 75%;
+  }
+
+  p {
+    margin-top: 1rem;
+    font-size: var(--fs-md);
+
+    a {
+      color: var(--accent-color);
+    }
+  }
+}

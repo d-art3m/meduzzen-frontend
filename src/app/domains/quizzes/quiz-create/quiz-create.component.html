@@ -1,0 +1,58 @@
+<div class="modal">
+  <form [formGroup]="quizForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Title:</label>
+      <input type="text" formControlName="title" />
+      @if (quizForm.get('title')?.invalid && quizForm.get('title')?.touched) {
+        <div class="error">Title is required</div>
+      }
+    </div>
+    <div>
+      <label>Description:</label>
+      <textarea formControlName="description"></textarea>
+      @if (quizForm.get('description')?.invalid && quizForm.get('description')?.touched) {
+        <div class="error">Description is required</div>
+      }
+    </div>
+
+    <h2>Questions</h2>
+    <div formArrayName="questions">
+      @for (questionGroup of questions.controls; track $index) {
+        <div [formGroupName]="$index" class="question-card">
+          <div>
+            <label>Question {{ $index + 1 }}:</label>
+            <input type="text" formControlName="question" />
+            @if (questionGroup.get('question')?.invalid && questionGroup.get('question')?.touched) {
+              <div class="error">Question is required</div>
+            }
+          </div>
+          <div formArrayName="answerOptions">
+            <label>Answer Options:</label>
+            @for (option of getAnswerOptions($index).controls; track $index) {
+              <input type="text" [formControlName]="$index" placeholder="Option {{ $index + 1 }}" />
+              @if (option.invalid && option.touched) {
+                <div class="error">Answer option is required</div>
+              }
+            }
+          </div>
+          <div>
+            <label>Correct Answer:</label>
+            <input type="text" formControlName="correctAnswer" />
+            @if (questionGroup.get('correctAnswer')?.invalid && questionGroup.get('correctAnswer')?.touched) {
+              <div class="error">Correct answer is required</div>
+            }
+          </div>
+          <button type="button" class="btn btn-outlined" (click)="removeQuestion($index)">Remove Question</button>
+        </div>
+      }
+    </div>
+    
+    @if (error) {
+      <div class="error">{{ error }}</div>
+    }
+    
+    <button type="button" class="btn btn-filled" (click)="addQuestion()">Add Question</button>
+    <button type="submit" class="btn btn-filled">Create Quiz</button>
+    <button type="button" class="btn btn-filled" (click)="onCancel()">Cancel</button>
+  </form>
+</div>

@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  app:
+    build: 
+      dockerfile: Dockerfile
+      context: .
+    env_file:
+      - .env
+    ports:
+      - "${NG_APP_PORT}:80"
+    restart: always
+    volumes:
+      - .:/src/app
