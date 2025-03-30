@@ -1,4 +1,24 @@
 nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  position: relative;
+
+  .burger-menu {
+    font-size: 1.5rem;
+    background: none;
+    color: var(--text-color);
+    border: none;
+    cursor: pointer;
+    outline: none;
+    display: none;
+
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+
   ul {
     list-style: none;
     display: flex;
@@ -21,6 +41,27 @@ nav {
         &:hover {
           color: var(--accent-color);
         }
+      }
+    }
+
+    @media (max-width: 768px) {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      width: 100%;
+      top: 100%;
+      left: 0;
+      text-align: center;
+      z-index: 10;
+      padding: 1rem 0;
+      background-color: var(--modal-bg);
+
+      &.open {
+        display: flex;
+      }
+
+      li {
+        margin: 0.5rem 0;
       }
     }
   }

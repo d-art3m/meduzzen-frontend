@@ -1,6 +1,6 @@
 <div class="container">
   <div class="flex">
-    <h2>Companies</h2>
+    <h1>Companies</h1>
     <button class="btn btn-outlined" (click)="openCreateModal()">+</button>
   </div>
 
@@ -14,7 +14,7 @@
   </div>
 
   @if (loading) {
-    <div>Loading...</div>
+    <app-loading />
   } @else if (error) {
     <div class="error">{{ error }}</div>
   } @else {

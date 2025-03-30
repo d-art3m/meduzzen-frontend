@@ -12,5 +12,6 @@ export const routes: Routes = [
   { path: 'auth', loadChildren: () => import('./domains/auth/auth.routes').then(m => m.routes), canActivate: [GuestGuard] },
   { path: 'companies', loadChildren: () => import('./domains/companies/companies.routes').then(m => m.routes), canActivate: [AuthGuard] },
   { path: 'users', loadChildren: () => import('./domains/users/users.routes').then(m => m.routes), canActivate: [AuthGuard] },
+  { path: 'quizzes', loadChildren: () => import('./domains/quizzes/quizzes.routes').then(m => m.routes), canActivate: [AuthGuard] },
   { path: '**', component: PageNotFoundComponent },
 ];

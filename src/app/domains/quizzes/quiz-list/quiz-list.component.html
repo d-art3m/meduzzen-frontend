@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Users</h1>
+  <h1>Quizzes</h1>
 
   @if (loading) {
     <app-loading />
@@ -7,17 +7,17 @@
     <div class="error">{{ error }}</div>
   } @else {
     <ul class="list">
-      @for (user of users; track user.id) {
+      @for (quiz of quizzes; track quiz.id) {
         <li class="card">
-          <a [routerLink]="['/users', user.id]">{{ user.name }}</a>
+          <a [routerLink]="['/quizzes', quiz.id]">{{ quiz.title }}</a>
         </li>
       }
     </ul>
   }
 
   <app-pagination 
-    [totalItems]="totalUsers" 
-    [limit]="limit" 
+    [totalItems]="totalQuizzes"
+    [limit]="limit"
     [currentPage]="currentPage"
     (pageChange)="onPageChange($event)">
   </app-pagination>

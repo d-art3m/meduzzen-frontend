@@ -1,0 +1,42 @@
+<div class="content">
+  @if (loading) {
+    <app-loading />
+  } @else if (error) {
+    <div class="error">{{ error }}</div>
+  } @else if (quiz) {
+    <h2>Quiz: {{ quiz.title }}</h2>
+    <p>Description: {{ quiz.description }}</p>
+
+    <form (ngSubmit)="submitQuiz()">
+      @for (question of quiz.questions; track question.id) {
+        <div class="question-card">
+          <h3>{{ $index + 1 }}. {{ question.question }}</h3>
+          <div class="answer-options">
+            @for (option of question.answerOptions; track $index) {
+              <label class="radio-label">
+                <input
+                  type="radio"
+                  name="question_{{ question.id }}"
+                  value="{{ option }}"
+                  (change)="onAnswerSelect(question.id, option)"
+                />
+                {{ option }}
+              </label>
+            }
+          </div>
+        </div>
+      }
+
+      @if (quiz.questions && quiz.questions.length > 0) {
+        <button type="submit" class="btn btn-outlined">Submit Quiz</button>
+      }
+    </form>
+
+    <app-modal [showModal]="showResultsModal" title="Quiz Results" (close)="closeResultsModal()">
+      <div>
+        <p>You answered {{ correctAnswers }} out of {{ quiz.questions.length }} questions correctly</p>
+        <p>Your score: {{ score }}</p>
+      </div>
+    </app-modal>
+  }
+</div>

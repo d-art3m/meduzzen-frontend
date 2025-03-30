@@ -1,47 +1,47 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { User } from '../../../models/user.model';
 import { PaginationComponent } from '../../../components/pagination/pagination.component';
-import { UserService } from '../../../services/user.service';
+import { Quiz } from '../../../models/quiz.model';
+import { QuizService } from '../../../services/quiz.service';
 import { LoadingComponent } from '../../../components/loading/loading.component';
 
 @Component({
-  selector: 'app-user-list',
+  selector: 'app-quiz-list',
   imports: [RouterLink, PaginationComponent, LoadingComponent],
-  templateUrl: './user-list.component.html',
-  styleUrl: './user-list.component.scss'
+  templateUrl: './quiz-list.component.html',
+  styleUrl: './quiz-list.component.scss',
 })
-export class UserListComponent implements OnInit {
-  users: User[] = [];
-  totalUsers: number = 0;
+export class QuizListComponent implements OnInit {
+  quizzes: Quiz[] = [];
+  totalQuizzes: number = 0;
   currentPage: number = 1;
   limit: number = 10;
   error: string = '';
   loading: boolean = false;
 
-  constructor(private userService: UserService) {}
+  constructor(private quizService: QuizService) {}
 
   ngOnInit(): void {
-    this.fetchUsers(this.currentPage);
+    this.loadQuizzes();
   }
 
-  fetchUsers(page: number): void {
+  loadQuizzes() {
     this.loading = true;
-    this.userService.getUsers(page, this.limit).subscribe({
+    this.quizService.getPublicQuizzes(this.currentPage, this.limit).subscribe({
       next: (res: any) => {
-        this.users = res.detail.items;
-        this.totalUsers = res.detail.total;
-        this.currentPage = page;
+        this.quizzes = res.detail.items;
+        this.totalQuizzes = res.detail.total;
         this.loading = false;
       },
       error: (err: any) => {
         this.error = err.error?.detail?.error || err.message;
         this.loading = false;
-      }
+      },
     });
   }
 
   onPageChange(page: number): void {
-    this.fetchUsers(page);
+    this.currentPage = page;
+    this.loadQuizzes();
   }
 }

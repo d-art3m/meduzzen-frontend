@@ -3,11 +3,24 @@
 .pagination {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-top: 1rem;
+  gap: 0.5rem;
+
+  button, .ellipsis {
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.25rem;
+  }
 
   button {
     &.active {
       background-color: var(--accent-color);
+    }
+    &:disabled {
+      background-color: var(--secondary-color);
+      color: var(--text-color);
+      cursor: not-allowed;
+      opacity: 0.5;
     }
   }
 }

@@ -1,0 +1,52 @@
+<div class="container">
+  @if (loading) {
+    <app-loading />
+  } @else if (error) {
+    <div class="error">{{ error }}</div>
+  } @else {
+    <div class="flex">
+      <h1>Quizzes</h1>
+      @if (isOwner) {
+        <button class="btn btn-outlined" (click)="openCreateQuizModal()">+</button>
+        <app-modal [showModal]="isCreateQuizModalOpen" title="Create New Quiz" (close)="closeCreateQuizModal()">
+          <app-quiz-create 
+            (quizCreated)="handleQuizCreated($event)"
+            (cancel)="closeCreateQuizModal()"
+            [companyId]="companyId!">
+          </app-quiz-create>
+        </app-modal>
+      }
+      </div>
+    <ul class="list">
+      @if (!quizzes.length) {
+        <h2>List is empty</h2>
+      }
+      @for (quiz of quizzes; track quiz.id) {
+        <li class="card">
+          <a [routerLink]="['/quizzes', quiz.id]">{{ quiz.title }}</a>
+          @if (isOwner) {
+            <button class="btn btn-outlined" (click)="openEditModal(quiz)">&#9998;</button>
+          }
+        </li>
+      }
+    </ul>
+
+    <app-pagination 
+      [totalItems]="totalQuizzes"
+      [limit]="limit"
+      [currentPage]="currentPage"
+      (pageChange)="onPageChange($event)">
+    </app-pagination>
+
+    @if (selectedQuiz) {
+      <app-modal [showModal]="isEditModalOpen" title="Edit Quiz" (close)="closeEditModal()">
+        <app-quiz-edit
+          [quiz]="selectedQuiz!"
+          (update)="handleQuizUpdated($event)"
+          (cancel)="closeEditModal()"
+          (deleteQuiz)="handleQuizDeleted(selectedQuiz.id!)">
+        </app-quiz-edit>
+      </app-modal>
+    }
+  }
+</div>

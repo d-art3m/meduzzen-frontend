@@ -1,11 +1,11 @@
 @use 'btn.styles';
 
 .container {
-  margin-top: 4rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  margin-top: 2rem;
+
+  h1 {
+    margin-bottom: 1rem;
+  }
 
   form {
     display: flex;
@@ -18,10 +18,6 @@
       border: 2px solid var(--primary-color);
       border-radius: 0.5rem;
       font-size: var(--fs-md);
-    }
-
-    .error {
-      color: var(--accent-color);
     }
   }
 
